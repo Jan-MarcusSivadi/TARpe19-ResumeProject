@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bs/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bs/bootstrap-grid.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>Add new Document</title>
+
+    <script type='text/javascript'>
+        function addFields(){
+            // Number of inputs to create
+            var number = 1;
+            // needed elements
+            const schoolTitle = document.querySelector(".schoolTitle");
+            const educationF = document.querySelector("#education_f");
+            const container = document.querySelector("#educationInputs");
+            for (i=0;i<number;i++){
+                // Append a node with a random text
+                var count = container.getElementsByClassName('CV_item_inputs').length;
+                
+                var fieldName;
+
+                var title1 = document.createElement('h4');
+                titleValue = document.createTextNode("School");
+                title1.id = 'schoolTitle'+count;
+                title1.appendChild(titleValue);
+                // Create an <input> element, set its type and name attributes
+                var input1 = document.createElement("input");
+                input1.type = "text";
+                fieldName = "newEducation"+count;
+                input1.id = fieldName;
+                input1.name = fieldName;
+                input1.placeholder = "Add finished school's name";
+                input1.size = "40";
+                
+                var title2 = document.createElement('h4');
+                titleValue = document.createTextNode("Year");
+                title2.id = 'schoolTitleYear'+count;
+                title2.appendChild(titleValue);
+                // Create an <input> element, set its type and name attributes
+                var input2 = document.createElement("input");
+                input2.type = "text";
+                fieldName = "newEducationYear"+count;
+                input2.id = fieldName;
+                input2.name = fieldName;
+                input2.placeholder = "From ... to ... (2021 - ...)";
+                
+                var item = document.createElement('div');
+                item.className = "CV_item_inputs";
+                item.appendChild(title1);
+                item.appendChild(input1);
+                item.appendChild(title2);
+                item.appendChild(input2);
+
+                var education_class = document.createElement('div');
+                education_class.className = "EDUCATION_CLASS";
+                education_class.appendChild(item);
+                container.appendChild(education_class);
+
+                // Append a line break 
+                container.appendChild(document.createElement("br"));
+            }
+        }
+        function onSubmit(){
+            const parent = document.getElementById('educationInputs');
+            const child = parent.getElementsByClassName("EDUCATION_CLASS");
+            console.log("Submit length: "+child.length);
+            var data = "";
+            for (i=0;i<child.length;i++) {
+                var myObj = document.querySelector('#newEducation'+i);
+                console.log("VALUE: "+myObj.value);
+                if (i < child.length-1) data += (myObj.value + ",");
+                else data += (myObj.value);
+            };
+            console.log(data);
+
+            const final = document.querySelector('#INPUTS0');
+            final.value = data;
+            document.querySelector('#form0').submit();
+        }
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="header" id="heading">
+            <h1>New Document</h1>
+            <hr>
+        </div>
+
+        <div class="CV">
+            <form action="/create-doc" method="POST" id="form0">
+                <h1>Details</h1>
+                <hr class="hr">
+                <div class="inputs">
+                    <h4 id="FirstName0">First name </h4>
+                    <div class="CV_item2">
+                        <input id="first_name_f" type="text" name="newFirst" placeholder="Add first name" value=""
+                        required="true">
+                    </div>
+
+                    <h4 id="LastName0">Last name </h4>
+                    <div class="CV_item2">
+                        <input id="last_name_f" type="text" name="newLast" placeholder="Add last name" value=""
+                        required="true">
+                    </div>
+                </div>
+                <hr class="hr_bottom">
+
+                <h1>Objective</h1>
+                <hr class="hr">
+                <div class="inputs">
+                    <div class="CV_item2">
+                        <input id="objective_f" type="text" name="newObjective" placeholder="Add objective" value=""
+                        required="true">
+                    </div>
+                </div>
+                <hr class="hr_bottom">
+                
+                <h1>Education</h1>
+                <hr class="hr">
+                <div class="inputs">
+                    <div id="educationInputs" >
+                        
+                    </div>
+                    <input type="text" name="INPUT_educationInputs" value="a" id="INPUTS0">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="addFields();">Add</button>
+                <hr class="hr_bottom">
+
+            </form>
+            <button class="btn btn-primary" onclick="onSubmit();">Submit form</button>
+        </div>
+        <hr class="hr_bottom">
+    </div>
+</body>
+</html>

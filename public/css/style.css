@@ -1,0 +1,75 @@
+:root {
+    --bg-color: rgb(46, 46, 46);
+    --txt-color: white;
+    --hr-color: var(--txt-color); /*rgb(119, 119, 119)*/
+    --border-color: grey;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-repeat: no-repeat;
+    min-height: 1000px;
+    font-family: 'helvetica neue';
+}
+
+body {
+    background-color: var(--bg-color) !important;
+    color: var(--txt-color) !important;
+}
+
+.container {
+    padding: 0;
+}
+
+.header {
+    padding: 2rem;
+}
+.header h1 {
+    font-size: 4rem;
+}
+
+.CV {
+    padding: 2rem;
+    padding-bottom: 3rem;
+}
+.CV_item {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 0.2rem;
+}
+.CV_item2 {
+    padding-bottom: 0.4rem;
+}
+.CV_item_inputs {
+    padding-bottom: 2rem;
+}
+
+.list-group li {
+    border-color: var(--border-color);
+    background-color: var(--bg-color);
+}
+
+.inputs input {
+    border: var(--border-color) solid 0.1rem;
+    background-color: var(--bg-color);
+    color: var(--txt-color);
+    font-size: 1.2rem;
+    padding: 0.2rem;
+}
+
+.my-btn {
+    margin-top: 2rem;
+}
+
+hr {
+    color: var(--hr-color);
+}
+.hr_bottom {
+    margin-bottom: 4rem;
+}

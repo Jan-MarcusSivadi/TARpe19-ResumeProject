@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bs/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bs/bootstrap-grid.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>Resume</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header" id="heading">
+            <h1>Resume</h1>
+            <hr>
+        </div>
+
+        <% for(let i=0; i < Items.length; i++) { %>
+            <div class="CV">
+
+                <h1>Details</h1>
+                <hr class="hr">
+                <div class="CV_item">
+                    <h2>First name</h2>
+                    <p><%= Items[i].first_name %></p>
+                </div>
+
+                <div class="CV_item">
+                    <h2>Last name</h2>
+                    <p><%= Items[i].last_name %></p>
+                </div>
+                <hr class="hr_bottom">
+
+                <h1>Objective</h1>
+                <hr>
+                <div class="CV_item">
+                    <p><%= Items[i].objective %></p>
+                </div>
+                <hr class="hr_bottom">
+
+                <h1>Education</h1>
+                <hr>
+                <div class="CV_item">
+                    <ul class="list-group">
+                        <% for(let j=0; j < Items[i].education.length; j++) { %>
+                        <li class="list-group-item">
+                            <%= Items[i].education[j] %> <br>
+                            <%= Items[i].education_year[j] %>
+                        </li>
+                        <% } %>
+                    </ul>
+                </div>
+                <hr class="hr_bottom">
+
+                <h1>Computer skills</h1>
+                <hr>
+                <div class="CV_item">
+                    <ul class="list-group">
+                        <% for(let j=0; j < Items[i].computer_knowledge.length; j++) { %>
+                            <div class="CV_item2">
+                                <li class="list-group-item">
+                                    <%= Items[i].computer_knowledge[j] %>
+                                </li>
+                            </div>
+                        <% } %>
+                    </ul>
+                </div>
+                <hr class="hr_bottom">
+                
+                <h1>Languages</h1>
+                <hr>
+                <div class="CV_item">
+                    <ul class="list-group">
+                        <% for(let j=0; j < Items[i].languages.length; j++) { %>
+                            <div class="CV_item2">
+                                <li class="list-group-item">
+                                    <%= Items[i].languages[j] %>
+                                </li>
+                            </div>
+                        <% } %>
+                    </ul>
+                </div>
+
+            </div>
+        <% } %>
+        <hr class="hr_bottom">
+    </div>
+</body>
+
+</html>
