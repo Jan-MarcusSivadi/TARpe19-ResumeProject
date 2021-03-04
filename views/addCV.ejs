@@ -70,7 +70,7 @@
             const parent = document.getElementById('educationInputs');
             const child = parent.getElementsByClassName("EDUCATION_CLASS");
             console.log("Submit length: "+child.length);
-            var data = "";
+            var data = [];
             for (i=0;i<child.length;i++) {
                 var myObj = document.querySelector('#newEducation'+i);
                 console.log("VALUE: "+myObj.value);
@@ -128,7 +128,7 @@
                     <div id="educationInputs" >
                         
                     </div>
-                    <input type="text" name="INPUT_educationInputs" value="a" id="INPUTS0">
+                    <input type="text" name="INPUT_educationInputs" id="INPUTS0">
                 </div>
                 <button type="button" class="btn btn-primary" onclick="addFields();">Add</button>
                 <hr class="hr_bottom">

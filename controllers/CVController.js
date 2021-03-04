@@ -67,7 +67,7 @@ exports.postAddDoc = (req, res) => {
     myCV.first_name = req.body.newFirst;
     myCV.last_name = req.body.newLast;
     myCV.objective = req.body.newObjective;
-    var array = JSON.parse("[" + req.body.INPUT_educationInputs + "]");
+    var array = req.body.INPUT_educationInputs.split(",").map(String);
     myCV.education = array;
 
     // myCV.education = [
