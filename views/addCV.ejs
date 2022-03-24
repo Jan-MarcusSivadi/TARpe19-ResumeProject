@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,50 +13,56 @@
     <title>Add new Document</title>
 
     <script type='text/javascript'>
-        function addFields(){
+        function addFields() {
             // Number of inputs to create
             var number = 1;
             // needed elements
             const schoolTitle = document.querySelector(".schoolTitle");
             const educationF = document.querySelector("#education_f");
             const container = document.querySelector("#educationInputs");
-            for (i=0;i<number;i++){
-                // Append a node with a random text
-                var count = container.getElementsByClassName('CV_item_inputs').length;
-                
-                var fieldName;
 
-                var title1 = document.createElement('h4');
-                titleValue = document.createTextNode("School");
-                title1.id = 'schoolTitle'+count;
-                title1.appendChild(titleValue);
-                // Create an <input> element, set its type and name attributes
-                var input1 = document.createElement("input");
-                input1.type = "text";
-                fieldName = "newEducation"+count;
-                input1.id = fieldName;
-                input1.name = fieldName;
-                input1.placeholder = "Add finished school's name";
-                input1.size = "40";
-                
-                var title2 = document.createElement('h4');
-                titleValue = document.createTextNode("Year");
-                title2.id = 'schoolTitleYear'+count;
-                title2.appendChild(titleValue);
-                // Create an <input> element, set its type and name attributes
-                var input2 = document.createElement("input");
-                input2.type = "text";
-                fieldName = "newEducationYear"+count;
-                input2.id = fieldName;
-                input2.name = fieldName;
-                input2.placeholder = "From ... to ... (2021 - ...)";
-                
+            for (i = 0; i < number; i++) {
+                // Get the total count of classes to display
+                var id = container.getElementsByClassName('CV_item_inputs').length;
+                var school_title = document.createElement('h4');
+                var year_title = document.createElement('h4');
+                var node_value;
+                var field;
+
+                // Add school title
+                node_value = document.createTextNode("School");
+                {
+                    school_title.id = 'schoolTitle' + id;
+                    school_title.appendChild(node_value);
+                    // Create an <input> element, set its type and name attributes
+                    var school_input = document.createElement("input");
+                    school_input.type = "text";
+                    field = "newEducation" + id;
+                    school_input.id = field;
+                    school_input.name = school_input.id;
+                    school_input.placeholder = "Add finished school's name";
+                    school_input.size = "40";
+                }
+
+                // Add year title
+                node_value = document.createTextNode("Year");
+                {
+                    year_title.id = 'schoolTitleYear' + id;
+                    year_title.appendChild(node_value);
+                    // Create an <input> element, set its type and name attributes
+                    var input_year = document.createElement("input");
+                    input_year.type = "text";
+                    field = "newEducationYear" + id;
+                    input_year.id = field; input_year.name = input_year.id;
+                    input_year.placeholder = "From ... to ... (2021 - ...)";
+                }
+
                 var item = document.createElement('div');
                 item.className = "CV_item_inputs";
-                item.appendChild(title1);
-                item.appendChild(input1);
-                item.appendChild(title2);
-                item.appendChild(input2);
+                item.appendChild(school_title);
+                item.appendChild(school_input);
+                item.appendChild(year_title);
+                item.appendChild(input_year);
 
                 var education_class = document.createElement('div');
                 education_class.className = "EDUCATION_CLASS";
@@ -66,26 +73,36 @@
                 container.appendChild(document.createElement("br"));
             }
         }
-        function onSubmit(){
+        function onSubmit() {
             const parent = document.getElementById('educationInputs');
             const child = parent.getElementsByClassName("EDUCATION_CLASS");
-            console.log("Submit length: "+child.length);
-            var data = [];
-            for (i=0;i<child.length;i++) {
-                var myObj = document.querySelector('#newEducation'+i);
-                console.log("VALUE: "+myObj.value);
-                if (i < child.length-1) data += (myObj.value + ",");
+            console.log("Submit length: " + child.length);
+            var data = [];            
+            var data2 = [];            
+            for (i = 0; i < child.length; i++) {
+                // TITLE
+                var myObj = document.querySelector('#newEducation' + i);
+                console.log("VALUE: " + myObj.value);
+                if (i < child.length - 1) data += (myObj.value + ",$");
                 else data += (myObj.value);
+                // YEAR
+                var myObj = document.querySelector('#newEducationYear' + i);
+                console.log("VALUE: " + myObj.value);
+                if (i < child.length - 1) data2 += (myObj.value + ",$");
+                else data2 += (myObj.value);
             };
             console.log(data);
 
-            const final = document.querySelector('#INPUTS0');
-            final.value = data;
+            const finalInput0 = document.querySelector('#INPUT0');
+            finalInput0.value = data;
+            const finalInput1 = document.querySelector('#INPUT1');
+            finalInput1.value = data2;
             document.querySelector('#form0').submit();
         }
     </script>
 
 </head>
+
 <body>
     <div class="container">
         <div class="header" id="heading">
@@ -99,15 +116,14 @@
                 <hr class="hr">
                 <div class="inputs">
                     <h4 id="FirstName0">First name </h4>
-                    <div class="CV_item2">
+                    <div class="CV_item">
                         <input id="first_name_f" type="text" name="newFirst" placeholder="Add first name" value=""
-                        required="true">
+                            required="true">
                     </div>
-
                     <h4 id="LastName0">Last name </h4>
-                    <div class="CV_item2">
+                    <div class="CV_item">
                         <input id="last_name_f" type="text" name="newLast" placeholder="Add last name" value=""
-                        required="true">
+                            required="true">
                     </div>
                 </div>
                 <hr class="hr_bottom">
@@ -115,20 +131,21 @@
                 <h1>Objective</h1>
                 <hr class="hr">
                 <div class="inputs">
-                    <div class="CV_item2">
+                    <div class="CV_item">
                         <input id="objective_f" type="text" name="newObjective" placeholder="Add objective" value=""
-                        required="true">
+                            required="true">
                     </div>
                 </div>
                 <hr class="hr_bottom">
-                
+
                 <h1>Education</h1>
                 <hr class="hr">
                 <div class="inputs">
-                    <div id="educationInputs" >
-                        
+                    <div id="educationInputs">
+                        <!-- adds items here -->
                     </div>
-                    <input type="text" name="INPUT_educationInputs" id="INPUTS0">
+                    <input type="text" name="INPUT_educationInputs" id="INPUT0">
+                    <input type="text" name="INPUT_educationInputs2" id="INPUT1">
                 </div>
                 <button type="button" class="btn btn-primary" onclick="addFields();">Add</button>
                 <hr class="hr_bottom">
@@ -139,4 +156,5 @@
         <hr class="hr_bottom">
     </div>
 </body>
+
 </html>
