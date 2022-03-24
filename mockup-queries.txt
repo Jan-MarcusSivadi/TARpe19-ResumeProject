@@ -1,0 +1,6 @@
+db.products.insertOne({_id: 1, name: "cat food", price: 1.20})
+db.products.insertOne({_id: 2, name: "dog food", price: 2.20})
+db.products.insertOne({_id: 3, name: "fish food", price: 1})
+
+db.products.find({price: {$gt: 1.2}})
+mongodb://127.0.0.1:27017
